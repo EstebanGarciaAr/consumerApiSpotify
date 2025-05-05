@@ -1,0 +1,51 @@
+.home-container {
+    height: 100vh;
+    background: linear-gradient(
+      to bottom right,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 128, 0, 0.7)
+    );
+  }
+  
+  .hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6); 
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  .navbar {
+    position: fixed; 
+    top: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  
+  .navbar-brand img {
+    height: 40px; 
+  }
+  
+  .navbar-nav .nav-link {
+    color: #fff !important;
+  }
+  
+  
+  .boton-card {
+    background-color: #1db954;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+  }
+  
+  .boton-card:hover {
+    background-color: #1ed760; 
+    color: white;
+  }
