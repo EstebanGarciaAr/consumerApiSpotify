@@ -49,3 +49,11 @@
     background-color: #1ed760; 
     color: white;
   }
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+  .navbar-brand span {
+    margin-left: 8px;
+  }
+  
