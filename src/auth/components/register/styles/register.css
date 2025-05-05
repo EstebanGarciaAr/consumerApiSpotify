@@ -1,10 +1,51 @@
-.register-section {
-    height: 100vh;
-    background-image: url('https://cdn.pixabay.com/photo/2016/10/22/00/15/spotify-1759471_1280.jpg');
-    background-size: cover;
-    background-position: center;
-  }
-  
+
   .card-custom {
     border-radius: 15px;
   }
+  .register-section {
+    background: linear-gradient(135deg, #1db954, #191414);
+    min-height: 100vh;
+ 
+  }
+  
+  .card-custom {
+    padding: 2rem;
+    background-color: #1a1a1a;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  
+  .logo-image {
+    width: 80px;
+  }
+  .register-button {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .register-button:hover {
+    background-color: #218838;
+  }
+    
+  .card-custom,
+.card-custom .form-label,
+.card-custom h2,
+.card-custom p,
+.card-custom a {
+  color: white !important;
+}
+
+.card-custom input {
+  color: white;
+  background-color: transparent;
+  border: 1px solid #ccc;
+}
+
+.card-custom input::placeholder {
+  color: #ccc;
+}

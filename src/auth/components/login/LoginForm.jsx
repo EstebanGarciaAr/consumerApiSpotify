@@ -14,7 +14,8 @@ export const LoginForm = ({ onLogin }) => {
   const validateForm = () => {
     const newErrors = {};
     if (!email) newErrors.email = "Please enter your email.";
-    else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = "Please enter a valid email.";
+    else if (!/\S+@\S+\.\S+/.test(email))
+      newErrors.email = "Please enter a valid email.";
 
     if (!password) newErrors.password = "Please enter your password.";
     setErrors(newErrors);
@@ -32,14 +33,14 @@ export const LoginForm = ({ onLogin }) => {
   return (
     <div className="card-login">
       <div className="logo text-center mb-3">
-        <img src="/image/spotifyIcon.png" alt="Logo" width="60" height="50" className="me-2" />
+        <img clasName="logo-image" src="/image/spotifyIcon.png" alt="Logo" />
       </div>
 
       <SocialLoginButtons />
 
       <div className="texto-O d-flex align-items-center my-3">
         <hr className="flex-grow-1" />
-        <span className="px-2">O</span>
+        <span className="px-2">Or</span>
         <hr className="flex-grow-1" />
       </div>
 
@@ -64,7 +65,9 @@ export const LoginForm = ({ onLogin }) => {
           className="form-control"
           placeholder="Password"
         />
-        {errors.password && <small className="text-danger">{errors.password}</small>}
+        {errors.password && (
+          <small className="text-danger">{errors.password}</small>
+        )}
       </div>
 
       <div className="form-check my-2">
@@ -74,20 +77,14 @@ export const LoginForm = ({ onLogin }) => {
         </label>
       </div>
 
-      <div className="mb-2">
-        <button
-          className="btn btn-primary btn-block w-100"
-          style={{ border: "0", backgroundColor: "white", color: "black" }}
-          onClick={handleRegister}
-        >
-          Register
+      <div className="d-flex justify-content-between gap-3">
+        <button className="login-button w-50" onClick={handleRegister}>
+          REGISTER
+        </button>
+        <button className="login-button w-50" onClick={handleLogin}>
+          LOG IN
         </button>
       </div>
-
-      <button className="login-button w-100" onClick={handleLogin}>
-        LOG IN
-      </button>
-
       <div className="texto-contraseña text-center mt-2">
         <a href="#">Forgot your password?</a>
       </div>
