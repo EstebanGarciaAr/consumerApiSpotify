@@ -9,12 +9,12 @@ const formFields = {
 };
 
 export const RegisterForm = () => {
-
-  const { name, email, password, repeatPassword, onInputChange, formState } = useForm(formFields);
+  const { name, email, password, repeatPassword, onInputChange, formState } =
+    useForm(formFields);
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(formState); 
+    console.log(formState);
   };
 
   return (
@@ -26,6 +26,14 @@ export const RegisterForm = () => {
               <div className="col-12 col-md-9 col-lg-7 col-xl-6">
                 <div className="card card-custom">
                   <div className="card-body p-5">
+                    <div className="text-center mb-4">
+                      <img
+                        className="logo-image"
+                        src="/image/spotifyIcon.png"
+                        alt="Logo"
+                      />
+                    </div>
+
                     <h2 className="text-uppercase text-center mb-5">
                       Create an account
                     </h2>
@@ -102,11 +110,8 @@ export const RegisterForm = () => {
                       </div>
 
                       <div className="d-flex justify-content-center">
-                        <button
-                          type="submit"
-                          className="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                        >
-                          Register
+                        <button type="submit" className="register-button w-100">
+                          REGISTER
                         </button>
                       </div>
 
