@@ -26,6 +26,8 @@ export function HomePage() {
   return (
     <>
       <NavBar/>
+      <br />
+      <br />
       <div className="home-container">
         <div className="container py-5">
           <h1 className="text-center mb-5 text-white">
