@@ -32,14 +32,14 @@ export const LoginForm = ({ onLogin }) => {
   return (
     <div className="card-login">
       <div className="logo text-center mb-3">
-        <img src="/image/spotifyIcon.png" alt="Logo" width="60" height="50" className="me-2" />
+        <img clasName= "logo-image"src="/image/spotifyIcon.png" alt="Logo" />
       </div>
 
       <SocialLoginButtons />
 
       <div className="texto-O d-flex align-items-center my-3">
         <hr className="flex-grow-1" />
-        <span className="px-2">O</span>
+        <span className="px-2">Or</span>
         <hr className="flex-grow-1" />
       </div>
 
@@ -76,13 +76,14 @@ export const LoginForm = ({ onLogin }) => {
 
       <div className="mb-2">
         <button
-          className="btn btn-primary btn-block w-100"
-          style={{ border: "0", backgroundColor: "white", color: "black" }}
+          className="login-button w-100"
           onClick={handleRegister}
         >
-          Register
+          REGISTER
         </button>
       </div>
+      <br>
+      </br>
 
       <button className="login-button w-100" onClick={handleLogin}>
         LOG IN
