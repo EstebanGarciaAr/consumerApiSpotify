@@ -3,12 +3,14 @@ import { SocialLoginButtons } from "./SocialLoginButtons";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "../login/styles/login.css";
+import { loginHelper } from "../../helpers/loginHelper";
 
 const initialForm = { email: "", password: "" };
 
-export const LoginForm = ({ onLogin }) => {
+export const LoginForm = ({ onLogin, onGoogleLogin, errorMessage }) => {
   const { email, password, onInputChange } = useForm(initialForm);
   const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState(false);
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -22,11 +24,17 @@ export const LoginForm = ({ onLogin }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleLogin = () => {
-    if (validateForm()) onLogin({ email, password });
+  const manageLogin = async () => {
+    if (validateForm()) {
+      await loginHelper(() => onLogin({ email, password}), setSubmitError, navigate);
+    }
   };
 
-  const handleRegister = () => {
+  const manageGoogleLogin = async () => {
+    await loginHelper(onGoogleLogin, setSubmitError, navigate);
+  }
+
+  const manageRegister = () => {
     navigate("/Register", { replace: true });
   };
 
@@ -36,13 +44,19 @@ export const LoginForm = ({ onLogin }) => {
         <img clasName="logo-image" src="/image/spotifyIcon.png" alt="Logo" />
       </div>
 
-      <SocialLoginButtons />
+      <SocialLoginButtons onGoogleLogin={manageGoogleLogin}/>
 
       <div className="texto-O d-flex align-items-center my-3">
         <hr className="flex-grow-1" />
         <span className="px-2">Or</span>
         <hr className="flex-grow-1" />
       </div>
+
+      {submitError && (
+        <div className="alert alert-danger text-center">
+          {errorMessage || "Login failed, Please check your credentials."}
+        </div>
+      )}
 
       <div className="mb-3">
         <input
@@ -78,10 +92,10 @@ export const LoginForm = ({ onLogin }) => {
       </div>
 
       <div className="d-flex justify-content-between gap-3">
-        <button className="login-button w-50" onClick={handleRegister}>
+        <button className="login-button w-50" onClick={manageRegister}>
           REGISTER
         </button>
-        <button className="login-button w-50" onClick={handleLogin}>
+        <button className="login-button w-50" onClick={manageLogin}>
           LOG IN
         </button>
       </div>
