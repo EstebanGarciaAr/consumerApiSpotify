@@ -1,5 +1,6 @@
 import {
     GoogleAuthProvider,
+    FacebookAuthProvider,
     signInWithEmailAndPassword,
     signInWithPopup,
   } from "firebase/auth";
@@ -7,6 +8,7 @@ import {
   import { FirebaseAuth } from "./config";
   
   const GoogleProvider = new GoogleAuthProvider();
+  const FacebookProvider = new FacebookAuthProvider();
   
   
   // Authenticate user against firebase authentication
@@ -57,6 +59,30 @@ import {
       return {
         ok: false,
         errorMessage: error.message,
+      };
+    }
+  };
+
+  export const authWithFacebook = async () => {
+    FacebookProvider.setCustomParameters({ prompt: "select_account" });
+
+    try {
+      const result = await signInWithPopup(FirebaseAuth, FacebookProvider);
+
+      const { uid, photoURL, displayName, email } = result.user;
+
+      return {
+         ok: true, 
+         uid, 
+         photoURL, 
+         email, 
+         displayName 
+        };
+
+    } catch (error) {
+      return { 
+        ok: false, 
+        errorMessage: error.message 
       };
     }
   };

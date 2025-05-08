@@ -1,5 +1,5 @@
 import { authTypes } from "../types/authTypes";
-import { loginUser, authWithGoogle } from "../../firebase/provider"
+import { loginUser, authWithGoogle, authWithFacebook } from "../../firebase/provider"
 import { authenticationHelper } from "../helpers/authenticationHelper";
 
 export const useAuthenticate = (dispatch) => {
@@ -17,6 +17,13 @@ export const useAuthenticate = (dispatch) => {
         return authenticationHelper(authResponse, dispatch)
     }
 
+    // login with facebook
+
+    const loginFacebook = async () => {
+        const authResponse = await authWithFacebook();
+        return authenticationHelper(authResponse, dispatch)
+    }
+
     //logout
 
     const logout = () => {
@@ -26,5 +33,5 @@ export const useAuthenticate = (dispatch) => {
         dispatch(action);
     };
     
-    return {login, loginGoogle, logout};
+    return {login, loginGoogle, loginFacebook, logout};
 }

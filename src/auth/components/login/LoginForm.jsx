@@ -7,7 +7,7 @@ import { loginHelper } from "../../helpers/loginHelper";
 
 const initialForm = { email: "", password: "" };
 
-export const LoginForm = ({ onLogin, onGoogleLogin, errorMessage }) => {
+export const LoginForm = ({ onLogin, onGoogleLogin, onFacebookLogin, errorMessage }) => {
   const { email, password, onInputChange } = useForm(initialForm);
   const [errors, setErrors] = useState({});
   const [submitError, setSubmitError] = useState(false);
@@ -34,6 +34,10 @@ export const LoginForm = ({ onLogin, onGoogleLogin, errorMessage }) => {
     await loginHelper(onGoogleLogin, setSubmitError, navigate);
   }
 
+  const manageFacebookLogin = async () => {
+    await loginHelper(onFacebookLogin, setSubmitError, navigate);
+  }
+
   const manageRegister = () => {
     navigate("/Register", { replace: true });
   };
@@ -44,7 +48,10 @@ export const LoginForm = ({ onLogin, onGoogleLogin, errorMessage }) => {
         <img clasName="logo-image" src="/image/spotifyIcon.png" alt="Logo" />
       </div>
 
-      <SocialLoginButtons onGoogleLogin={manageGoogleLogin}/>
+      <SocialLoginButtons 
+        onGoogleLogin={manageGoogleLogin}
+        onFacebookLogin={manageFacebookLogin}
+      />
 
       <div className="texto-O d-flex align-items-center my-3">
         <hr className="flex-grow-1" />

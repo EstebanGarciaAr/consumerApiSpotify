@@ -26,9 +26,9 @@ import { useReducer } from "react"
  export const UserProvider = ({children}) => {
  
      const [ userState, dispatch ] = useReducer(authReducer, authInitialState, init);
-     const {login, logout, loginGoogle} = useAuthenticate(dispatch);
+     const {login, logout, loginGoogle, loginFacebook} = useAuthenticate(dispatch);
      return (
-         <UserContext.Provider value={{userState, login, logout, loginGoogle}}>
+         <UserContext.Provider value={{userState, login, logout, loginGoogle, loginFacebook}}>
              { children }
          </UserContext.Provider>
      )
