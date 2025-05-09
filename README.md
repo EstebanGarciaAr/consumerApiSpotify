@@ -73,8 +73,11 @@ npm run dev
 Install the following dependencies after cloning the repo:
 
 npm install react-router-dom
+
 npm install firebase
+
 npm install bootstrap
+
 npm install @fortawesome/fontawesome-free
 
 
