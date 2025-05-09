@@ -7,7 +7,7 @@ import { loginHelper } from "../../helpers/loginHelper";
 
 const initialForm = { email: "", password: "" };
 
-export const LoginForm = ({ onLogin, onGoogleLogin, onFacebookLogin, errorMessage }) => {
+export const LoginForm = ({ onLogin, onGoogleLogin, onFacebookLogin, onSpotifyLogin, errorMessage }) => {
   const { email, password, onInputChange } = useForm(initialForm);
   const [errors, setErrors] = useState({});
   const [submitError, setSubmitError] = useState(false);
@@ -26,17 +26,21 @@ export const LoginForm = ({ onLogin, onGoogleLogin, onFacebookLogin, errorMessag
 
   const manageLogin = async () => {
     if (validateForm()) {
-      await loginHelper(() => onLogin({ email, password}), setSubmitError, navigate);
+      await loginHelper(() => onLogin({ email, password }), setSubmitError, navigate);
     }
   };
 
   const manageGoogleLogin = async () => {
     await loginHelper(onGoogleLogin, setSubmitError, navigate);
-  }
+  };
 
   const manageFacebookLogin = async () => {
     await loginHelper(onFacebookLogin, setSubmitError, navigate);
-  }
+  };
+
+  const manageSpotifyLogin = async () => {
+    await loginHelper(onSpotifyLogin, setSubmitError, navigate);
+  };
 
   const manageRegister = () => {
     navigate("/Register", { replace: true });
@@ -45,12 +49,13 @@ export const LoginForm = ({ onLogin, onGoogleLogin, onFacebookLogin, errorMessag
   return (
     <div className="card-login">
       <div className="logo text-center mb-3">
-        <img clasName="logo-image" src="/image/spotifyIcon.png" alt="Logo" />
+        <img className="logo-image" src="/image/spotifyIcon.png" alt="Logo" />
       </div>
 
       <SocialLoginButtons 
         onGoogleLogin={manageGoogleLogin}
         onFacebookLogin={manageFacebookLogin}
+        onSpotifyLogin={manageSpotifyLogin}
       />
 
       <div className="texto-O d-flex align-items-center my-3">
@@ -106,6 +111,7 @@ export const LoginForm = ({ onLogin, onGoogleLogin, onFacebookLogin, errorMessag
           LOG IN
         </button>
       </div>
+
       <div className="texto-contraseña text-center mt-2">
         <a href="#">Forgot your password?</a>
       </div>
