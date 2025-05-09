@@ -3,6 +3,8 @@ import {
     FacebookAuthProvider,
     signInWithEmailAndPassword,
     signInWithPopup,
+    createUserWithEmailAndPassword,
+    updateProfile,
   } from "firebase/auth";
   
   import { FirebaseAuth } from "./config";
@@ -38,6 +40,30 @@ import {
       };
     }
   };
+
+  export const registerUser = async (email, password, name) => {
+  try {
+    const result = await createUserWithEmailAndPassword(FirebaseAuth, email, password);
+
+
+    await updateProfile(result.user, { displayName: name });
+
+    const { uid, photoURL, displayName } = result.user;
+
+    return {
+      ok: true,
+      uid,
+      email,
+      photoURL,
+      displayName,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      errorMessage: error.message,
+    };
+  }
+};
   
   export const authWithGoogle = async () => {
     GoogleProvider.setCustomParameters({ prompt: "select_account" });
