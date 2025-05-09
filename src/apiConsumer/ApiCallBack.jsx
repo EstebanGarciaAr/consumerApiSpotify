@@ -6,7 +6,7 @@ import { authTypes } from "../auth/types/authTypes";
 // These are your Spotify credentials and redirect URI
 const clientId = "8f253d07d35c44f9b78250440688ffe9";
 const clientSecret = "1affe5dd4d8d4313acd4af76e64e5896";
-const redirectUri = "https://0cd7-38-156-230-137.ngrok-free.app/CallBack";
+const redirectUri = "https://2b29-2800-484-976f-bb00-acc1-bb52-d403-9396.ngrok-free.app/CallBack";
 
 const ApiCallBack = () => {
   const navigate = useNavigate(); // Used to redirect to another page

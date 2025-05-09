@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "../../../hooks/useForm";
 import "../../components/register/styles/register.css";
 import { registerUser } from "../../../firebase/provider";
+import { useNavigate } from "react-router-dom";
 
 // Initial form values
 const formFields = {
@@ -27,6 +28,8 @@ export const RegisterForm = () => {
 
   // Checkbox state: true if user accepts terms
   const [termsAccepted, setTermsAccepted] = useState(false);
+
+  const navigate = useNavigate();
 
   // Function runs when form is submitted
   const onSubmit =  async (event) => {
@@ -63,7 +66,8 @@ export const RegisterForm = () => {
     }
 
     setFormError("");
-    console.log("User registered successfully!");
+    navigate("/Login",{ state: { successMessage: "Your account has been created!" } });
+
 
   };
 
