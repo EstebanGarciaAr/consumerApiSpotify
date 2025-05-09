@@ -1,12 +1,89 @@
-# React + Vite
+# 🎧 consumerApiSpotify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React + Vite application that integrates with the Spotify API and Firebase Authentication. It supports multi-provider login and is designed to allow users to save and share up to 3 custom playlists.
 
-Currently, two official plugins are available:
+> 🚧 Currently under development — playlist persistence and sharing features are in progress.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 🔐 **User Authentication with Firebase**
+  - Email/Password login
+  - Google Sign-In
+  - Facebook Sign-In
+- 🔒 **Protected Routes** – Ensures only authenticated users can access core features
+- 📋 **Registration UI Ready** – Visual form for sign-up, logic not yet implemented
+- 🎵 **Planned Features**
+  - Save up to **3 custom playlists**
+  - Explore and download **public playlists shared by other users**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 📁 Project Structure
+
+```bash
+/src
+  /auth
+    /components
+      /login         # LoginForm & SocialLoginButton components
+      /register      # RegisterForm component
+    /context         # UserContext and UserProvider
+    /helpers         # helpers
+    /hooks           # Custom auth hook (useAuthentication)
+    /pages           # LoginPage & RegisterPage
+    /reducers        # authReducer
+    /types           # Action type constants for auth
+  /components
+    /home            # NavBar and PlayList components
+  /firebase          # Firebase config and provider
+  /hooks             # Shared custom hooks (useForm)
+  /pages             # HomePage (after login)
+  /router            # AppRouter
+  EventApp.jsx       # (main layout)
+  main.jsx           # App entry point
+
+```
+🛠️ Tech Stack
+
+-React
+
+-Vite
+
+-Firebase
+
+-React Router DOM
+
+-Bootstrap 5
+
+-Font Awesome
+
+🚀 Getting Started
+Clone the repo and run the project:
+
+# Clone the repository
+git clone https://github.com/EstebanGarciaAr/consumerApiSpotify.git
+cd consumerApiSpotify
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+## 📥 Installation Commands
+
+Install the following dependencies after cloning the repo:
+
+npm install react-router-dom
+npm install firebase
+npm install bootstrap
+npm install @fortawesome/fontawesome-free
+
+
+## 📝 Development Notes
+
+✅ Login functional - login with API Spotify coming soon
+
+⚠️ Registration is visual only – logic not yet wired to Firebase
+
+🚧 Playlist saving/sharing functionality coming soon
+
+
