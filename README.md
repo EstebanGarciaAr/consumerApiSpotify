@@ -87,6 +87,49 @@ ngrok config add-authtoken 2wnSaSc4eQ11oyzjAADRFKP9uwR_VHhgnrnAjnkw15Tv2Zh4
 
 ngrok http 5173
 
+🔐 Firebase Authentication Setup
+Before running this project locally, make sure Firebase Authentication is correctly configured so the login methods (email/password, Google, and Facebook) work properly.
+
+1. Create a Firebase project
+Go to https://console.firebase.google.com
+
+Click "Add project" and follow the setup steps (you can skip Google Analytics if you want).
+
+Once your project is created, go to the project dashboard.
+
+2. Register a Web App
+Click the </> icon to add a new web app.
+
+Give it a name (e.g., spotify-auth-app) and register it.
+
+Copy the configuration keys that are generated.
+
+3. Enable Authentication Providers
+In the Firebase console:
+
+📧 Email/Password
+Go to "Authentication" > "Sign-in method".
+
+In the list of providers, click Email/Password.
+
+Enable it and save changes.
+
+🟢 Google
+In the same Sign-in method section, click Google.
+
+Enable it.
+
+Add a support email and save changes.
+
+🔵 Facebook
+Create an app at https://developers.facebook.com
+
+In the Facebook app dashboard, go to "Settings" > "Basic" and copy the App ID and App Secret.
+
+Back in Firebase, click Facebook and paste those credentials.
+
+In OAuth redirect URI, copy the URL Firebase gives you and paste it in Facebook's settings (under Facebook Login > Settings).
+
 
 ## 📝 Development Notes
 
