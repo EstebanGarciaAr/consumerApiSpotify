@@ -68,6 +68,9 @@ npm install
 # Start development server
 npm run dev
 
+# Download ngrok
+choco install ngrok
+
 ## 📥 Installation Commands
 
 Install the following dependencies after cloning the repo:
@@ -79,6 +82,10 @@ npm install firebase
 npm install bootstrap
 
 npm install @fortawesome/fontawesome-free
+
+ngrok config add-authtoken 2wnSaSc4eQ11oyzjAADRFKP9uwR_VHhgnrnAjnkw15Tv2Zh4
+
+ngrok http 5173
 
 
 ## 📝 Development Notes
