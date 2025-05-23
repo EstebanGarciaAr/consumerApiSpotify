@@ -4,7 +4,7 @@ export const authenticateSpotify = async (code) => {
   const { clientId, redirectUri } = spotifyConfig;
 
   const codeVerifier = localStorage.getItem("spotify_code_verifier");
-  console.log("📌 codeVerifier:", codeVerifier); // para depuración
+  console.log("codeVerifier:", codeVerifier); 
 
   const body = new URLSearchParams({
     grant_type: "authorization_code",
@@ -24,7 +24,7 @@ export const authenticateSpotify = async (code) => {
 
   if (!response.ok) {
     const errorData = await response.json();
-    console.error("❌ Spotify token error:", errorData);
+    console.error("Spotify token error:", errorData);
     throw new Error("Spotify authentication failed: " + JSON.stringify(errorData));
   }
 

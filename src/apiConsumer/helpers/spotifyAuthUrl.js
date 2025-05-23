@@ -25,7 +25,6 @@ export const getSpotifyAuthUrl = async () => {
   const codeVerifier = generateRandomString(128);
   const codeChallenge = await generateCodeChallenge(codeVerifier);
 
-  // Guardamos el code_verifier en localStorage para luego
   localStorage.setItem("spotify_code_verifier", codeVerifier);
 
   const scope = scopes.join(" ");
