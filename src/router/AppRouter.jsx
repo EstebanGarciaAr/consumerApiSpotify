@@ -1,11 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../auth/context/UserContext";
-
-import { HomePage } from '../pages/HomePage';
+import HomePage from "../pages/HomePage"
 import { LoginPage } from "../auth/pages/LoginPage";
 import { RegisterPage } from "../auth/pages/RegisterPage";
-
+import {ProfilePage} from "../pages/ProfilePage";
 export const AppRouter = () => {
   const { userState: { logged } } = useContext(UserContext);
 
@@ -21,9 +20,8 @@ export const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+       <Route path="/" element={<HomePage />} />
+      <Route path="/profile" element={<ProfilePage />} /> 
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );
