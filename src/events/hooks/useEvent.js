@@ -5,7 +5,7 @@ import { eventTypes } from "../types/eventTypes";
 export const useEvent = (user, dispatch) => {
 
     const initializeEvents = async () => {
-        const eventsRef = collection(FirebaseDB, `${user.uid}/consumidorApiSpoti/events`);
+        const eventsRef = collection(FirebaseDB, `${user.uid}/consumerApiSpotify/events`);
 
         const q = query(eventsRef);
 
@@ -28,7 +28,7 @@ export const useEvent = (user, dispatch) => {
     }
 
     const fetchEvents = async () => {
-        const eventsRef = collection(FirebaseDB, `${user.uid}/consumidorApiSpoti/events`);
+        const eventsRef = collection(FirebaseDB, `${user.uid}/consumerApiSpotify/events`);
 
         const q = query(eventsRef);
 
@@ -44,7 +44,7 @@ export const useEvent = (user, dispatch) => {
 
     const saveEvent = async (event) => {
         try {
-            const newDoc = doc(collection(FirebaseDB,  `${user.uid}/consumidorApiSpoti/events`));
+            const newDoc = doc(collection(FirebaseDB,  `${user.uid}/consumerApiSpotify/events`));
 
 
             await setDoc(newDoc, event);

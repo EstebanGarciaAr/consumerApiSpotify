@@ -4,7 +4,7 @@ import { UserContext } from "../../auth/context/UserContext";
 import { getUserProfile } from "../../apiConsumer/helpers/spotifyApi";
 import "./styles/home.css";
 
-function NavBar() {
+function NavBar({ onStoragePage = false }) {
   const { logout } = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -81,6 +81,20 @@ function NavBar() {
               <Link to="/" className="btn btn-outline-light me-3">
                 Home
               </Link>
+            )}
+
+            {onStoragePage ? ( 
+              <li className="nav-item me-3">
+                <Link to="/" className="btn btn-outline-light">
+                  Home
+                </Link>
+              </li>
+            ) : ( 
+              <li className="nav-item me-3">
+                <Link to="/storage" className="btn btn-outline-light">
+                  Descargar
+                </Link>
+              </li>
             )}
 
             <li className="nav-item">
