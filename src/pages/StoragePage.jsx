@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { EventContext } from '../events/context/EventContext';
 import NavBar from '../components/homePage/NavBar';
 import PlayLists from '../components/homePage/PlayLists'; 
+import "../components/homePage/styles/home.css";
 
 const StoragePage = () => {
   const { fetchEvents } = useContext(EventContext);
@@ -53,10 +54,12 @@ const StoragePage = () => {
 
   
   return (
-    <div>
+    <div className="home-container">
       <NavBar onStoragePage={true}/>
       <div className="container py-5 text-white">
-        <h2>Tus Playlists Guardadas</h2>
+        <br/>
+        <br/>
+        <h2 className="text-center mb-5">Playlists de Amigos</h2>
         {savedPlaylists.length > 0 ? (
             <PlayLists playlists={savedPlaylists} showActions={false} />
         ) : (

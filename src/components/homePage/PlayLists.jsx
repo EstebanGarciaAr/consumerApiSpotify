@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import { EventContext } from '../../events/context/EventContext';
+import  SelectPlayListContext  from '../../context/SelectPlayListContext';
 
 function PlayLists({ playlists, showActions = true }) {
   const { saveEvent } = useContext(EventContext);
+  const { addSelectPlaylist, removeSelectPlaylist, isPlaylistSelected } = useContext(SelectPlayListContext)
 
   const savePlayList = (event, playlist) => {
     event.stopPropagation();
@@ -20,6 +22,15 @@ function PlayLists({ playlists, showActions = true }) {
       savedAt: new Date().toISOString(),
     });
   };
+
+  const showOnHome = (event, playlist) => {
+    event.stopPropagation();
+    if(isPlaylistSelected(playlist.id)) {
+      removeSelectPlaylist(playlist.id)
+    } else {
+      addSelectPlaylist(playlist);
+    }
+  }
 
   return (
     <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -59,6 +70,14 @@ function PlayLists({ playlists, showActions = true }) {
                     Guardar PlayList
                   </button>
                 </div>
+              )}
+              {!showActions && (
+                  <button
+                    className={`btn btn-sm ${isPlaylistSelected(playlist.id) ? 'btn-warning' : 'btn-info'} mt-2`}
+                    onClick={(event) => showOnHome(event, playlist)}
+                  >
+                    {isPlaylistSelected(playlist.id) ? 'Eliminar de Home' : 'Descargar en Home'}
+                  </button>
               )}
 
             </div>
