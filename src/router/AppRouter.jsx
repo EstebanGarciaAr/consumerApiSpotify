@@ -5,6 +5,8 @@ import HomePage from "../pages/HomePage"
 import { LoginPage } from "../auth/pages/LoginPage";
 import { RegisterPage } from "../auth/pages/RegisterPage";
 import {ProfilePage} from "../pages/ProfilePage";
+import StoragePage from "../pages/StoragePage";
+
 export const AppRouter = () => {
   const { userState: { logged } } = useContext(UserContext);
 
@@ -22,6 +24,7 @@ export const AppRouter = () => {
     <Routes>
        <Route path="/" element={<HomePage />} />
       <Route path="/profile" element={<ProfilePage />} /> 
+      <Route path="/storage" element={<StoragePage/>}/>
       <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );

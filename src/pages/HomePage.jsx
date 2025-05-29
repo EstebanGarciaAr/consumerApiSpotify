@@ -1,5 +1,5 @@
-// src/pages/HomePage.jsx
-import { useEffect, useState } from "react";
+
+import { useEffect, useState, useContext } from "react";
 import {
   getTopTracks,
   getTopArtists,
@@ -10,12 +10,14 @@ import NavBar from "../components/homePage/NavBar";
 import Playlists from "../components/homePage/PlayLists";
 import TopArtists from "../components/homePage/TopArtists"; 
 import "../components/homePage/styles/home.css";
+import SelectPlayListContext from "../context/SelectPlayListContext"
 
 function HomePage() {
   const [topTrack, setTopTrack] = useState(null);
   const [topArtist, setTopArtist] = useState(null);
   const [topArtists, setTopArtists] = useState([]); 
   const [playlists, setPlaylists] = useState([]);
+  const { selectPlaylists } = useContext(SelectPlayListContext);
 
   useEffect(() => {
     Promise.all([getTopTracks(1), getTopArtists(5), getUserPlaylists()])
@@ -112,6 +114,17 @@ function HomePage() {
           </div>
 
           <TopArtists topArtists={topArtists} /> 
+
+          <div className="mt-5">
+            <h2 className="text-center mb-5">Playlists de Amigos</h2>
+            {selectPlaylists.length > 0 ? (
+              <div className="card bg-dark text-white p-3 shadow rounded-4">
+                <Playlists playlists={selectPlaylists} showActions={false} />
+              </div>
+            ) : (
+              <p className="mt-3">Descarga PlayList de tus Amigos.</p>
+            )}
+          </div>
         </div>
       </div>
     </>
