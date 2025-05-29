@@ -1,4 +1,4 @@
-// src/pages/HomePage.jsx
+
 import { useEffect, useState } from "react";
 import {
   getTopTracks,
