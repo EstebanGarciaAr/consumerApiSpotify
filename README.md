@@ -1,41 +1,44 @@
 # 🎧 consumerApiSpotify
 
-Una moderna aplicación desarrollada con React + Vite que integra autenticación con Firebase y la API Web de Spotify. Los usuarios pueden iniciar sesión con Spotify, visualizar sus artistas principales, playlists y canciones, además de descargar las playlists compartidas por sus amigos. Todo está conectado a Firebase para una experiencia fluida y segura.
+A modern React + Vite application that integrates Firebase Authentication and the Spotify Web API. Users can log in with Spotify, view their top artists, playlists, and tracks, and download playlists shared by their friends. The entire app is connected to Firebase for a smooth and secure experience.
 
-## ✨ Funcionalidades
+## ✨ Features
 
-- 🔐 **Autenticación de usuarios con Firebase**
-  - Inicio de sesión con correo y contraseña
-  - Inicio de sesión con Google
-  - Inicio de sesión con Facebook
-  - Inicio de sesión con **Spotify**
-- 🔒 **Rutas protegidas** – Solo usuarios autenticados pueden acceder a las funcionalidades principales
-- 🏠 **Home Page funcional** – Muestra artistas principales, playlists y canciones del usuario desde Spotify
-- 📥 **Descarga de playlists de amigos** – Permite explorar y descargar playlists públicas compartidas por otros usuarios
-- 🎵 **Playlists personalizadas** – Guarda hasta **3 playlists personalizadas** por usuario
+- 🔐 **User Authentication with Firebase**
+  - Email/Password login
+  - Google Sign-In
+  - Facebook Sign-In
+  - **Spotify Login** fully integrated
+- 🔒 **Protected Routes** – Only authenticated users can access main features
+- 🏠 **Fully Functional Home Page** – Displays top artists, playlists, and tracks from Spotify
+- 📥 **Download Friends' Playlists** – Explore and download public playlists shared by others
+- 🎵 **Custom Playlists** – Users can save up to **3 personalized playlists**
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```bash
 /src
+  /apiconsumer
+     /config         # config from spotyfy   
   /auth
     /components
-      /login         # Componentes LoginForm y SocialLoginButton
-      /register      # Componente RegisterForm
-    /context         # UserContext y UserProvider
-    /helpers         # Helpers
-    /hooks           # Hook personalizado useAuthentication
-    /pages           # LoginPage y RegisterPage
+      /login         # LoginForm & SocialLoginButton components
+      /register      # RegisterForm component
+    /context         # UserContext and UserProvider
+    /helpers         # Helper functions
+    /hooks           # useAuthentication custom hook
+    /pages           # LoginPage & RegisterPage
     /reducers        # authReducer
-    /types           # Constantes de tipo de acción para auth
+    /types           # Action type constants for auth
   /components
-    /home            # NavBar y componente PlayList
-  /firebase          # Configuración y proveedor de Firebase
-  /hooks             # Hooks compartidos como useForm
-  /pages             # HomePage con integración de Spotify
-  /router            # AppRouter con rutas protegidas
-  EventApp.jsx       # Estructura principal de la app
-  main.jsx           # Punto de entrada de la aplicación
+    /home            # NavBar and PlayList components
+   /events           #firestore
+  /firebase          # Firebase config and provider
+  /hooks             # Shared hooks (e.g., useForm)
+  /pages             # HomePage (Spotify data)
+  /router            # AppRouter with protected routes
+  EventApp.jsx       # Main app layout
+  main.jsx           # App entry point
 
 
 ```
