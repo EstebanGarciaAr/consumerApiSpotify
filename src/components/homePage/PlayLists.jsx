@@ -1,12 +1,12 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { EventContext } from '../../events/context/EventContext';
-import  SelectPlayListContext  from '../../context/SelectPlayListContext';
+import SelectPlayListContext from '../../context/SelectPlayListContext';
 
 function PlayLists({ playlists, showActions = true, onDeleteFromStorage }) {
   const { saveEvent } = useContext(EventContext);
-  const { addSelectPlaylist, removeSelectPlaylist, isPlaylistSelected } = useContext(SelectPlayListContext)
-
-  const savePlayList = (event, playlist) => {
+  const { addSelectPlaylist, removeSelectPlaylist, isPlaylistSelected } = useContext(SelectPlayListContext);
+  const [successMessageIndex, setSuccessMessageIndex] = useState(null); 
+  const savePlayList = (event, playlist, index) => {
     event.stopPropagation();
 
     const { id, name, description, tracks, owner, images, external_urls } = playlist;
@@ -21,16 +21,20 @@ function PlayLists({ playlists, showActions = true, onDeleteFromStorage }) {
       external_urls,
       savedAt: new Date().toISOString(),
     });
+
+    
+    setSuccessMessageIndex(index);
+    setTimeout(() => setSuccessMessageIndex(null), 3000);
   };
 
   const showOnHome = (event, playlist) => {
     event.stopPropagation();
-    if(isPlaylistSelected(playlist.id)) {
-      removeSelectPlaylist(playlist.id)
+    if (isPlaylistSelected(playlist.id)) {
+      removeSelectPlaylist(playlist.id);
     } else {
       addSelectPlaylist(playlist);
     }
-  }
+  };
 
   return (
     <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -59,13 +63,13 @@ function PlayLists({ playlists, showActions = true, onDeleteFromStorage }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-sm btn-outline-light"
-                    onClick={(event) => event.stopPropagation()} 
+                    onClick={(event) => event.stopPropagation()}
                   >
                     Ver en Spotify
                   </a>
                   <button
                     className="btn btn-sm btn-success"
-                    onClick={(event) => savePlayList(event, playlist)}
+                    onClick={(event) => savePlayList(event, playlist, index)}
                   >
                     Guardar PlayList
                   </button>
@@ -90,8 +94,19 @@ function PlayLists({ playlists, showActions = true, onDeleteFromStorage }) {
                   >
                     {isPlaylistSelected(playlist.id) ? 'Eliminar de Home' : 'Descargar en Home'}
                   </button>
+              {!showActions && (
+                <button
+                  className={`btn btn-sm ${isPlaylistSelected(playlist.id) ? 'btn-warning' : 'btn-info'} mt-2`}
+                  onClick={(event) => showOnHome(event, playlist)}
+                >
+                  {isPlaylistSelected(playlist.id) ? 'Eliminar de Home' : 'Descargar en Home'}
+                </button>
               )}
-
+              {successMessageIndex === index && (
+                <div className="alert alert-success mt-3 p-2 py-1">
+                  Playlist guardada con éxito
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -101,4 +116,3 @@ function PlayLists({ playlists, showActions = true, onDeleteFromStorage }) {
 }
 
 export default PlayLists;
-
