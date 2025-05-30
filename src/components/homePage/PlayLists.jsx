@@ -74,6 +74,7 @@ function PlayLists({ playlists, showActions = true, onDeleteFromStorage }) {
               {!showActions && onDeleteFromStorage && (
                 <button
                   className='btn btn-sm btn-danger mt-2'
+                  style={{ marginRight: '10px' }}
                   onClick={(event) => {
                     event.stopPropagation();
                     onDeleteFromStorage(playlist.id)
