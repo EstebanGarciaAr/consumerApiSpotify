@@ -1,44 +1,42 @@
 # 🎧 consumerApiSpotify
 
-A modern React + Vite application that integrates with the Spotify API and Firebase Authentication. It supports multi-provider login and is designed to allow users to save and share up to 3 custom playlists.
+Una moderna aplicación desarrollada con React + Vite que integra autenticación con Firebase y la API Web de Spotify. Los usuarios pueden iniciar sesión con Spotify, visualizar sus artistas principales, playlists y canciones, además de descargar las playlists compartidas por sus amigos. Todo está conectado a Firebase para una experiencia fluida y segura.
 
-> 🚧 Currently under development — playlist persistence and sharing features are in progress.
+## ✨ Funcionalidades
 
-## ✨ Features
+- 🔐 **Autenticación de usuarios con Firebase**
+  - Inicio de sesión con correo y contraseña
+  - Inicio de sesión con Google
+  - Inicio de sesión con Facebook
+  - Inicio de sesión con **Spotify**
+- 🔒 **Rutas protegidas** – Solo usuarios autenticados pueden acceder a las funcionalidades principales
+- 🏠 **Home Page funcional** – Muestra artistas principales, playlists y canciones del usuario desde Spotify
+- 📥 **Descarga de playlists de amigos** – Permite explorar y descargar playlists públicas compartidas por otros usuarios
+- 🎵 **Playlists personalizadas** – Guarda hasta **3 playlists personalizadas** por usuario
 
-- 🔐 **User Authentication with Firebase**
-  - Email/Password login
-  - Google Sign-In
-  - Facebook Sign-In
-- 🔒 **Protected Routes** – Ensures only authenticated users can access core features
-- 📋 **Registration UI Ready** – Visual form for sign-up, logic not yet implemented
-- 🎵 **Planned Features**
-  - Save up to **3 custom playlists**
-  - Explore and download **public playlists shared by other users**
-
-
-## 📁 Project Structure
+## 📁 Estructura del Proyecto
 
 ```bash
 /src
   /auth
     /components
-      /login         # LoginForm & SocialLoginButton components
-      /register      # RegisterForm component
-    /context         # UserContext and UserProvider
-    /helpers         # helpers
-    /hooks           # Custom auth hook (useAuthentication)
-    /pages           # LoginPage & RegisterPage
+      /login         # Componentes LoginForm y SocialLoginButton
+      /register      # Componente RegisterForm
+    /context         # UserContext y UserProvider
+    /helpers         # Helpers
+    /hooks           # Hook personalizado useAuthentication
+    /pages           # LoginPage y RegisterPage
     /reducers        # authReducer
-    /types           # Action type constants for auth
+    /types           # Constantes de tipo de acción para auth
   /components
-    /home            # NavBar and PlayList components
-  /firebase          # Firebase config and provider
-  /hooks             # Shared custom hooks (useForm)
-  /pages             # HomePage (after login)
-  /router            # AppRouter
-  EventApp.jsx       # (main layout)
-  main.jsx           # App entry point
+    /home            # NavBar y componente PlayList
+  /firebase          # Configuración y proveedor de Firebase
+  /hooks             # Hooks compartidos como useForm
+  /pages             # HomePage con integración de Spotify
+  /router            # AppRouter con rutas protegidas
+  EventApp.jsx       # Estructura principal de la app
+  main.jsx           # Punto de entrada de la aplicación
+
 
 ```
 🛠️ Tech Stack
@@ -133,10 +131,10 @@ In OAuth redirect URI, copy the URL Firebase gives you and paste it in Facebook'
 
 ## 📝 Development Notes
 
-✅ Login functional - login with API Spotify coming soon
-
-⚠️ Registration is visual only – logic not yet wired to Firebase
-
-🚧 Playlist saving/sharing functionality coming soon
+✅  Fully functional login with Spotify
+✅  HomePage displays artists, playlists, and tracks from Spotify
+✅ Registration UI and logic connected to Firebase
+✅ Firebase integration completed
+✅ Users can download playlists shared by friends
 
 
