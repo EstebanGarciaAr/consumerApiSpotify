@@ -94,13 +94,6 @@ function PlayLists({ playlists, showActions = true, onDeleteFromStorage }) {
                   >
                     {isPlaylistSelected(playlist.id) ? 'Eliminar de Home' : 'Descargar en Home'}
                   </button>
-              {!showActions && (
-                <button
-                  className={`btn btn-sm ${isPlaylistSelected(playlist.id) ? 'btn-warning' : 'btn-info'} mt-2`}
-                  onClick={(event) => showOnHome(event, playlist)}
-                >
-                  {isPlaylistSelected(playlist.id) ? 'Eliminar de Home' : 'Descargar en Home'}
-                </button>
               )}
               {successMessageIndex === index && (
                 <div className="alert alert-success mt-3 p-2 py-1">
