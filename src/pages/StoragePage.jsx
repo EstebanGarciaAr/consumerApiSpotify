@@ -5,10 +5,20 @@ import PlayLists from '../components/homePage/PlayLists';
 import "../components/homePage/styles/home.css";
 
 const StoragePage = () => {
-  const { fetchEvents } = useContext(EventContext);
+  const { fetchEvents, deleteEvent } = useContext(EventContext);
   const [savedPlaylists, setSavedPlaylists] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const deletePlaylist = (idDelete) => {
+    deleteEvent(idDelete).then(success => {
+      if (success) {
+        setSavedPlaylists(prevPlaylists => prevPlaylists.filter(p => p.id !== idDelete));
+      } else {
+        console.error("Error al eliminar la playlist");
+      }
+    });
+  }
 
   useEffect(() => {
     const loadSavedPlaylists = async () => {
@@ -61,7 +71,11 @@ const StoragePage = () => {
         <br/>
         <h2 className="text-center mb-5">Playlists de Amigos</h2>
         {savedPlaylists.length > 0 ? (
-            <PlayLists playlists={savedPlaylists} showActions={false} />
+            <PlayLists 
+              playlists={savedPlaylists} 
+              showActions={false} 
+              onDeleteFromStorage={deletePlaylist}
+            />
         ) : (
           <p>No has guardado ninguna playlist aun.</p>
         )}

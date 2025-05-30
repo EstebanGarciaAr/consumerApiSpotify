@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, query, setDoc } from "firebase/firestore/lite"
+import { collection, deleteDoc, doc, getDocs, query, setDoc } from "firebase/firestore/lite"
 import { FirebaseDB } from "../../firebase/config"
 import { eventTypes } from "../types/eventTypes";
 
@@ -74,6 +74,33 @@ export const useEvent = (user, dispatch) => {
 
     }
 
-    return {saveEvent, fetchEvents, initializeEvents}
+    const deleteEvent = async (eventId) => {
+        try {
+            const eventDocRef = doc(FirebaseDB, `${user.uid}/consumerApiSpotify/events/${eventId}`);
+            await deleteDoc(eventDocRef);
+
+            const action = {
+                type: eventTypes.removeEvent,
+                payload: eventId
+            };
+
+            dispatch(action);
+
+            return true;
+        } catch (error) {
+            console.error("Error al eliminar evento:", error);
+
+            const action = {
+                type: eventTypes.error,
+                payload: { errorMessage: error.message }
+            };
+
+            dispatch(action);
+
+            return false;
+        }
+    }
+
+    return {saveEvent, fetchEvents, initializeEvents, deleteEvent}
 
 }

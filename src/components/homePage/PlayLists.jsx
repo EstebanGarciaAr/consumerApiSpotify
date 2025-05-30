@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { EventContext } from '../../events/context/EventContext';
 import SelectPlayListContext from '../../context/SelectPlayListContext';
 
-function PlayLists({ playlists, showActions = true }) {
+function PlayLists({ playlists, showActions = true, onDeleteFromStorage }) {
   const { saveEvent } = useContext(EventContext);
   const { addSelectPlaylist, removeSelectPlaylist, isPlaylistSelected } = useContext(SelectPlayListContext);
   const [successMessageIndex, setSuccessMessageIndex] = useState(null); 
@@ -75,6 +75,25 @@ function PlayLists({ playlists, showActions = true }) {
                   </button>
                 </div>
               )}
+              {!showActions && onDeleteFromStorage && (
+                <button
+                  className='btn btn-sm btn-danger mt-2'
+                  style={{ marginRight: '10px' }}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onDeleteFromStorage(playlist.id)
+                  }}
+                >
+                  Eliminar PlayList
+                </button>
+              )}
+              {!showActions && onDeleteFromStorage && (
+                  <button
+                    className={`btn btn-sm ${isPlaylistSelected(playlist.id) ? 'btn-warning' : 'btn-info'} mt-2`}
+                    onClick={(event) => showOnHome(event, playlist)}
+                  >
+                    {isPlaylistSelected(playlist.id) ? 'Eliminar de Home' : 'Descargar en Home'}
+                  </button>
               {!showActions && (
                 <button
                   className={`btn btn-sm ${isPlaylistSelected(playlist.id) ? 'btn-warning' : 'btn-info'} mt-2`}
