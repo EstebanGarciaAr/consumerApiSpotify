@@ -22,12 +22,12 @@ export const EventProvider = ({children}) => {
 
     const {userState: {user} } = useContext(UserContext);
 
-    const { saveEvent, fetchEvents, initializeEvents } = useEvent(user, dispatch);
+    const { saveEvent, fetchEvents, initializeEvents, deleteEvent } = useEvent(user, dispatch);
 
     
 
     return (
-        <EventContext.Provider value={{ eventState, saveEvent, fetchEvents, initializeEvents}}>
+        <EventContext.Provider value={{ eventState, saveEvent, fetchEvents, initializeEvents, deleteEvent}}>
             {children}
         </EventContext.Provider>
     )

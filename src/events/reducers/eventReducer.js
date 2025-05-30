@@ -27,7 +27,11 @@ export const eventReducer = (state = {}, action = {}) => {
                 })
             }
 
-
+        case eventTypes.removeEvent: 
+            return {
+                ...state,
+                events: state.events.filter(event => event.id !== action.payload)
+            }
         
         case eventTypes.error:
             return {
@@ -35,9 +39,6 @@ export const eventReducer = (state = {}, action = {}) => {
                 errorMessage: action.payload?.errorMessage
             }
 
-
-        
-    
         default:
             return state;
     }

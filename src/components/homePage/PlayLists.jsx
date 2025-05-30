@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { EventContext } from '../../events/context/EventContext';
 import  SelectPlayListContext  from '../../context/SelectPlayListContext';
 
-function PlayLists({ playlists, showActions = true }) {
+function PlayLists({ playlists, showActions = true, onDeleteFromStorage }) {
   const { saveEvent } = useContext(EventContext);
   const { addSelectPlaylist, removeSelectPlaylist, isPlaylistSelected } = useContext(SelectPlayListContext)
 
@@ -71,7 +71,18 @@ function PlayLists({ playlists, showActions = true }) {
                   </button>
                 </div>
               )}
-              {!showActions && (
+              {!showActions && onDeleteFromStorage && (
+                <button
+                  className='btn btn-sm btn-danger mt-2'
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onDeleteFromStorage(playlist.id)
+                  }}
+                >
+                  Eliminar PlayList
+                </button>
+              )}
+              {!showActions && onDeleteFromStorage && (
                   <button
                     className={`btn btn-sm ${isPlaylistSelected(playlist.id) ? 'btn-warning' : 'btn-info'} mt-2`}
                     onClick={(event) => showOnHome(event, playlist)}
